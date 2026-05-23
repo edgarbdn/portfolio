@@ -1,0 +1,50 @@
+---
+---
+
+<div class="titulo-seccion">
+    <div class="label-wrapper">
+        <span class="label">Mi stack</span>
+        <svg class="subrayado" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7 C50 4, 120 8, 175 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M28 14 C70 18, 140 11, 198 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+</div>
+
+<style>
+    .titulo-seccion {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 2rem;
+        width: fit-content;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        transform: rotate(-6deg);
+    }
+
+    .label-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .label {
+        font-family: 'Caveat', cursive;
+        font-size: 4rem;
+        font-weight: 700;
+        color: #16a34a;
+        white-space: nowrap;
+        line-height: 1;
+    }
+
+    .subrayado path {
+        stroke: #16a34a;
+    }
+
+    .subrayado {
+        width: 100%;
+        height: 20px;
+        margin-top: -4px;
+    }
+</style>

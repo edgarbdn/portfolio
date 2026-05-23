@@ -1,0 +1,207 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const proyectos = await getCollection('proyectos');
+    return proyectos.map(proyecto => ({
+        params: { id: proyecto.id },
+        props: { proyecto },
+    }));
+}
+
+const { proyecto } = Astro.props;
+const { Content } = await render(proyecto);
+---
+
+<Layout>
+    <section class="w-full min-h-screen flex flex-col items-center px-6 pt-32 pb-20">
+        <div class="w-full max-w-5xl flex flex-col gap-10">
+
+            <!-- Volver -->
+            <a href="/" class="btn-volver">
+                <svg class="flecha-volver" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70 20 C50 18, 25 16, 8 20" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <path d="M8 20 L18 13 M8 20 L16 28" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="volver-texto">
+                    volver atrás
+                    <svg class="circulo" viewBox="0 0 130 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 35 C8 12, 35 2, 65 3 C95 4, 122 14, 121 33 C120 52, 94 60, 63 60 C32 60, 7 50, 8 35" stroke="#e63946" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <path d="M7 38 C4 13, 32 0, 65 1 C98 2, 126 13, 125 35 C124 57, 96 67, 63 67 C30 67, 5 55, 6 38" stroke="#e63946" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+                    </svg>
+                </span>
+            </a>
+
+            <!-- Titulo -->
+            <div class="titulo-wrapper">
+                <h1 class="titulo" transition:name={`titulo-${proyecto.id}`}>{proyecto.data.titulo}</h1>
+                <svg class="subrayado" viewBox="0 0 200 20" fill="none">
+                    <path d="M2 7 C50 4, 120 8, 175 5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    <path d="M28 14 C70 18, 140 11, 198 16" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+
+            <!-- Imagen -->
+            <img
+                src={proyecto.data.imagen}
+                alt={proyecto.data.titulo}
+                class="imagen-proyecto"
+                transition:name={`imagen-${proyecto.id}`}
+            />
+
+            <!-- Descripcion -->
+            <div class="descripcion">
+                <Content />
+            </div>
+
+            <!-- Tecnologias -->
+            <div class="techs">
+                {proyecto.data.tecnologias.map(tech => (
+                    <span class="tech-tag">{tech}</span>
+                ))}
+            </div>
+
+            <!-- Links -->
+            <div class="links">
+                <a href={proyecto.data.github} target="_blank" class="btn-github">
+                    Ver en GitHub
+                </a>
+                {proyecto.data.demo && (
+                    <a href={proyecto.data.demo} target="_blank" class="btn-demo">
+                        Ver demo
+                    </a>
+                )}
+            </div>
+
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .btn-volver {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        text-decoration: none;
+        width: fit-content;
+        transform: rotate(-3deg);
+    }
+
+    .flecha-volver {
+        width: 60px;
+        height: 30px;
+        transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .btn-volver:hover .flecha-volver {
+        transform: translateX(-8px);
+    }
+
+    .volver-texto {
+        position: relative;
+        font-family: 'Caveat', cursive;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #e63946;
+        white-space: nowrap;
+    }
+
+    .circulo {
+        position: absolute;
+        top: -22px;
+        left: -22px;
+        width: calc(100% + 44px);
+        height: calc(100% + 44px);
+    }
+
+    .titulo-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+        transform: rotate(-3deg);
+    }
+
+    .titulo {
+        font-family: 'Caveat', cursive;
+        font-size: 5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .subrayado {
+        width: 100%;
+        height: 20px;
+        margin-top: -4px;
+    }
+
+    .imagen-proyecto {
+        width: 100%;
+        border-radius: 1.5rem;
+        object-fit: cover;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .descripcion {
+        font-family: sans-serif;
+        font-size: 1rem;
+        color: #444;
+        line-height: 1.7;
+    }
+
+    .techs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tech-tag {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.8rem;
+        background: #1a1a1a;
+        color: #f7f7f7;
+        padding: 6px 14px;
+        border-radius: 999px;
+    }
+
+    .links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-github {
+        font-family: 'Caveat', cursive;
+        font-size: 1.3rem;
+        font-weight: 700;
+        background: #1a1a1a;
+        color: #f7f7f7;
+        padding: 10px 24px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+
+    .btn-github:hover { opacity: 0.8; }
+
+    .btn-demo {
+        font-family: 'Caveat', cursive;
+        font-size: 1.3rem;
+        font-weight: 700;
+        background: transparent;
+        color: #1a1a1a;
+        padding: 10px 24px;
+        border-radius: 999px;
+        border: 2px solid #1a1a1a;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-demo:hover {
+        background: #1a1a1a;
+        color: #f7f7f7;
+    }
+</style>

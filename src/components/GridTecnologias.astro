@@ -1,0 +1,48 @@
+---
+import htmlIcon from '../assets/html-dibujo.png';
+import jsIcon from '../assets/js-dibujo.png';
+import tsIcon from '../assets/ts-dibujo.png';
+
+const tecnologias = [
+    { nombre: 'HTML', icono: htmlIcon.src },
+    { nombre: 'JavaScript', icono: jsIcon.src },
+    { nombre: 'TypeScript', icono: tsIcon.src },
+];
+---
+
+<div class="grid">
+    {tecnologias.map(tech => (
+        <div class="tech-item">
+            <img src={tech.icono} alt={tech.nombre} class="tech-icon" />
+        </div>
+    ))}
+</div>
+
+<style>
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    .tech-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tech-icon {
+        width: 160px;
+        height: 160px;
+        object-fit: contain;
+    }
+
+    .tech-nombre {
+        font-family: 'Caveat', cursive;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+</style>

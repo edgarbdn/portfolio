@@ -1,0 +1,166 @@
+---
+
+import { Menu } from 'lucide-astro';
+import astroIcon from '../assets/astro.svg';
+import htmlIcon from '../assets/html.svg';
+import tsIcon from '../assets/ts.svg';
+import jsIcon from '../assets/js.svg';
+import jsonIcon from '../assets/json.png';
+
+---
+
+<div class="flex justify-center fixed top-8 left-0 right-0 z-50">
+
+    <!-- Móvil -->
+    <div class="flex flex-col items-center lg:hidden gap-3 absolute">
+        <button id="menu-btn" class="p-3 bg-[#000000C4] rounded-2xl">
+            <Menu color="#FFFFFF8F"/>
+        </button>
+        <ul id="menu-movil" class="menu-movil text-[14px] flex-col w-[80vw] bg-[#000000C4] text-[#969696] rounded-2xl font-semibold overflow-hidden">
+            <li><a href="#sobremi" class="tab-movil flex gap-2 items-center justify-center"><img src={htmlIcon.src} alt="html" width="16" height="16" /> sobreMi.html</a></li>
+            <li><a href="#proyectos" class="tab-movil flex gap-2 items-center justify-center"><img src={astroIcon.src} alt="astro" width="16" height="16" class="astro-icon" /> proyectos.astro</a></li>
+            <li><a href="#tecnologias" class="tab-movil flex gap-2 items-center justify-center"><img src={tsIcon.src} alt="ts" width="16" height="16" /> tecnologias.ts</a></li>
+            <li><a href="#experiencia" class="tab-movil flex gap-2 items-center justify-center"><img src={jsIcon.src} alt="js" width="16" height="16" /> experiencia.js</a></li>
+            <li><a href="#contacto" class="tab-movil flex gap-2 items-center justify-center"><img src={jsonIcon.src} alt="json" width="16" height="16" /> contacto.json</a></li>
+        </ul>
+    </div>
+
+    <!-- Desktop -->
+    <nav class="w-fit bg-[#1a1a1a] text-white absolute hidden lg:flex overflow-hidden rounded-2xl shadow-[0_8px_24px_0px_rgba(0,0,0,0.4)] border border-[#333333]">
+        <a href="#sobremi" class="tab active"><img src={htmlIcon.src} alt="html" width="20" height="20" /> sobreMi.html<span class="tab-close">✕</span></a>
+        <a href="#proyectos" class="tab"><img src={astroIcon.src} alt="astro" width="20" height="20" class="astro-icon" /> proyectos.astro<span class="tab-close">✕</span></a>
+        <a href="#tecnologias" class="tab"><img src={tsIcon.src} alt="ts" width="20" height="20" />tecnologias.ts<span class="tab-close">✕</span></a>
+        <a href="#experiencia" class="tab"><img src={jsIcon.src} alt="js" width="20" height="20" /> experiencia.js<span class="tab-close">✕</span></a>
+        <a href="#contacto" class="tab"><img src={jsonIcon.src} alt="json" width="20" height="20" /> contacto.json<span class="tab-close">✕</span></a>
+    </nav>
+</div>
+
+<style>
+
+@keyframes navAbajo {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes menuAbajo {
+  from { transform: translateY(-30%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+    nav{
+        font-family: "Fira Code", monospace;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        opacity: 0;
+        animation: navAbajo 1s ease forwards ;
+        animation-delay: 1s;
+    }
+
+    .menu-movil{
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .menu-movil.open{
+        max-height: 300px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    button{
+        animation: navAbajo 1s ease forwards ;
+    }
+
+
+
+    li a:hover{
+        color: white;
+    }
+
+    .tab {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        color: #969696;
+        text-decoration: none;
+        font-family: 'Fira Code', monospace;
+        font-size: 16px;
+        font-weight: 600;
+        border-top: 2px solid transparent;
+        border-right: 1px solid #3c3c3c;
+        transition: background-color 0.2s, color 0.2s, border-top-color 0.2s;
+    }
+
+    .tab:hover {
+        background-color: #3c3c3c;
+        color: #ffffff;
+        border-top-color: #007acc;
+    }
+
+    .tab.active {
+        background-color: #3c3c3c;
+        color: #ffffff;
+        border-top-color: #007acc;
+    }
+
+    .astro-icon {
+        filter: brightness(0) invert(1);
+    }
+
+    .tab-close {
+        margin-left: 6px;
+        font-size: 12px;
+        color: transparent;
+        width: 14px;
+        display: inline-block;
+        text-align: center;
+        transition: color 0.2s;
+    }
+
+    .tab:hover .tab-close {
+        color: #969696;
+    }
+
+    .tab.active .tab-close {
+        color: #ffffff;
+    }
+
+    .tab-movil {
+        padding: 12px 16px;
+        color: #969696;
+        text-decoration: none;
+        font-family: 'Fira Code', monospace;
+        font-size: 16px;
+        border-left: 2px solid transparent;
+        transition: background-color 0.2s, color 0.2s, border-left-color 0.2s;
+    }
+
+    .tab-movil:hover {
+        background-color: #3c3c3c;
+        color: #ffffff;
+        border-left-color: #007acc;
+    }
+</style>
+
+<script>
+    const btn = document.querySelector("#menu-btn");
+    const menu = document.querySelector("#menu-movil");
+    const tabs = document.querySelectorAll(".tab");
+
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("open");
+    });
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+        });
+    });
+</script>
