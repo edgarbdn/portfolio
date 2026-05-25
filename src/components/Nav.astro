@@ -1,166 +1,209 @@
 ---
-
 import { Menu } from 'lucide-astro';
-import astroIcon from '../assets/astro.svg';
-import htmlIcon from '../assets/html.svg';
-import tsIcon from '../assets/ts.svg';
-import jsIcon from '../assets/js.svg';
-import jsonIcon from '../assets/json.png';
 
+const links = [
+    { href: '#sobremi', label: 'Sobre mí', rotate: '-3deg', translateY: '3px' },
+    { href: '#tecnologias', label: 'Mi stack', rotate: '2deg', translateY: '-5px' },
+    { href: '#proyectos', label: 'Mis proyectos', rotate: '-2deg', translateY: '7px' },
+    { href: '#experiencia', label: 'Experiencia', rotate: '3deg', translateY: '-3px' },
+];
+
+const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
 ---
 
-<div class="flex justify-center fixed top-8 left-0 right-0 z-50">
+<header class="nav-header">
+    <!-- Desktop -->
+    <nav class="nav-desktop">
+        {links.map((link, i) => (
+            <a
+                href={link.href}
+                class="nav-nota"
+                style={`--rot: ${link.rotate}; --ty: ${link.translateY}; background: ${colores[i]};`}
+            >
+                {link.label}
+            </a>
+        ))}
+        <a href="/cv.pdf" download class="nav-nota nav-cv" style="transform: rotate(-1.5deg); background: #dbeafe;">
+            Mi CV
+        </a>
+        <a href="https://github.com/edgarbdn" target="_blank" class="nav-nota nav-github" style="transform: rotate(1deg); background: #f3e8ff;">
+            Mi Github
+        </a>
+    </nav>
 
     <!-- Móvil -->
-    <div class="flex flex-col items-center lg:hidden gap-3 absolute">
-        <button id="menu-btn" class="p-3 bg-[#000000C4] rounded-2xl">
-            <Menu color="#FFFFFF8F"/>
+    <div class="nav-movil">
+        <button id="menu-btn" class="menu-btn">
+            <Menu color="#1a1a1a" size={28} />
         </button>
-        <ul id="menu-movil" class="menu-movil text-[14px] flex-col w-[80vw] bg-[#000000C4] text-[#969696] rounded-2xl font-semibold overflow-hidden">
-            <li><a href="#sobremi" class="tab-movil flex gap-2 items-center justify-center"><img src={htmlIcon.src} alt="html" width="16" height="16" /> sobreMi.html</a></li>
-            <li><a href="#proyectos" class="tab-movil flex gap-2 items-center justify-center"><img src={astroIcon.src} alt="astro" width="16" height="16" class="astro-icon" /> proyectos.astro</a></li>
-            <li><a href="#tecnologias" class="tab-movil flex gap-2 items-center justify-center"><img src={tsIcon.src} alt="ts" width="16" height="16" /> tecnologias.ts</a></li>
-            <li><a href="#experiencia" class="tab-movil flex gap-2 items-center justify-center"><img src={jsIcon.src} alt="js" width="16" height="16" /> experiencia.js</a></li>
-            <li><a href="#contacto" class="tab-movil flex gap-2 items-center justify-center"><img src={jsonIcon.src} alt="json" width="16" height="16" /> contacto.json</a></li>
-        </ul>
+
+        <div id="menu-desplegable" class="menu-desplegable cerrado">
+            {links.map((link, i) => (
+                <a
+                    href={link.href}
+                    class="nav-nota-movil"
+                    style={`transform: rotate(${link.rotate}); background: ${colores[i]};`}
+                >
+                    {link.label}
+                </a>
+            ))}
+            <a href="/cv.pdf" download class="nav-nota-movil" style="transform: rotate(-1.5deg); background: #dbeafe;">
+                📄 Descargar CV
+            </a>
+            <a href="https://github.com/edgarbdn" target="_blank" class="nav-nota-movil" style="transform: rotate(1deg); background: #f3e8ff;">
+                🐙 Mi Github
+            </a>
+        </div>
     </div>
-
-    <!-- Desktop -->
-    <nav class="w-fit bg-[#1a1a1a] text-white absolute hidden lg:flex overflow-hidden rounded-2xl shadow-[0_8px_24px_0px_rgba(0,0,0,0.4)] border border-[#333333]">
-        <a href="#sobremi" class="tab active"><img src={htmlIcon.src} alt="html" width="20" height="20" /> sobreMi.html<span class="tab-close">✕</span></a>
-        <a href="#proyectos" class="tab"><img src={astroIcon.src} alt="astro" width="20" height="20" class="astro-icon" /> proyectos.astro<span class="tab-close">✕</span></a>
-        <a href="#tecnologias" class="tab"><img src={tsIcon.src} alt="ts" width="20" height="20" />tecnologias.ts<span class="tab-close">✕</span></a>
-        <a href="#experiencia" class="tab"><img src={jsIcon.src} alt="js" width="20" height="20" /> experiencia.js<span class="tab-close">✕</span></a>
-        <a href="#contacto" class="tab"><img src={jsonIcon.src} alt="json" width="20" height="20" /> contacto.json<span class="tab-close">✕</span></a>
-    </nav>
-</div>
-
-<style>
-
-@keyframes navAbajo {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes menuAbajo {
-  from { transform: translateY(-30%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-
-    nav{
-        font-family: "Fira Code", monospace;
-        font-optical-sizing: auto;
-        font-weight: 600;
-        font-style: normal;
-        opacity: 0;
-        animation: navAbajo 1s ease forwards ;
-        animation-delay: 1s;
-    }
-
-    .menu-movil{
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(-30px);
-        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .menu-movil.open{
-        max-height: 300px;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    button{
-        animation: navAbajo 1s ease forwards ;
-    }
-
-
-
-    li a:hover{
-        color: white;
-    }
-
-    .tab {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 10px 16px;
-        color: #969696;
-        text-decoration: none;
-        font-family: 'Fira Code', monospace;
-        font-size: 16px;
-        font-weight: 600;
-        border-top: 2px solid transparent;
-        border-right: 1px solid #3c3c3c;
-        transition: background-color 0.2s, color 0.2s, border-top-color 0.2s;
-    }
-
-    .tab:hover {
-        background-color: #3c3c3c;
-        color: #ffffff;
-        border-top-color: #007acc;
-    }
-
-    .tab.active {
-        background-color: #3c3c3c;
-        color: #ffffff;
-        border-top-color: #007acc;
-    }
-
-    .astro-icon {
-        filter: brightness(0) invert(1);
-    }
-
-    .tab-close {
-        margin-left: 6px;
-        font-size: 12px;
-        color: transparent;
-        width: 14px;
-        display: inline-block;
-        text-align: center;
-        transition: color 0.2s;
-    }
-
-    .tab:hover .tab-close {
-        color: #969696;
-    }
-
-    .tab.active .tab-close {
-        color: #ffffff;
-    }
-
-    .tab-movil {
-        padding: 12px 16px;
-        color: #969696;
-        text-decoration: none;
-        font-family: 'Fira Code', monospace;
-        font-size: 16px;
-        border-left: 2px solid transparent;
-        transition: background-color 0.2s, color 0.2s, border-left-color 0.2s;
-    }
-
-    .tab-movil:hover {
-        background-color: #3c3c3c;
-        color: #ffffff;
-        border-left-color: #007acc;
-    }
-</style>
+</header>
 
 <script>
-    const btn = document.querySelector("#menu-btn");
-    const menu = document.querySelector("#menu-movil");
-    const tabs = document.querySelectorAll(".tab");
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu-desplegable');
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("open");
+    btn?.addEventListener('click', () => {
+        menu?.classList.toggle('cerrado');
     });
 
-    tabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            tabs.forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
-        });
+    menu?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => menu.classList.add('cerrado'));
     });
 </script>
+
+<style>
+    .nav-header {
+        position: fixed;
+        top: 24px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        z-index: 50;
+    }
+
+    .nav-desktop {
+        display: none;
+    }
+
+    .nav-movil {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-movil {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nav-cv,
+        .nav-github {
+            display: none;
+        }
+    }
+
+    .nav-nota {
+        font-family: 'Caveat', cursive;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-decoration: none;
+        padding: 8px 16px;
+        box-shadow: 4px 6px 16px rgba(0,0,0,0.25);
+        transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+        position: relative;
+        opacity: 0;
+        animation: caerPapel 0.8s ease forwards;
+    }
+
+    .nav-nota:nth-child(1) { animation-delay: 0.1s; }
+    .nav-nota:nth-child(2) { animation-delay: 0.2s; }
+    .nav-nota:nth-child(3) { animation-delay: 0.3s; }
+    .nav-nota:nth-child(4) { animation-delay: 0.4s; }
+    .nav-nota:nth-child(5) { animation-delay: 0.5s; }
+    .nav-nota:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes caerPapel {
+        0% {
+            opacity: 0;
+            transform: translateY(-60px) rotate(-8deg);
+        }
+        70% {
+            opacity: 1;
+            transform: translateY(calc(var(--ty) + 4px)) rotate(var(--rot));
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(var(--ty)) rotate(var(--rot));
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nav-nota {
+            font-size: 1.6rem;
+            padding: 12px 24px;
+        }
+    }
+
+    .nav-nota::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-1deg);
+        width: 40px;
+        height: 18px;
+        background: rgba(255,255,255,0.55);
+        border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-nota:hover {
+        transform: translateY(var(--ty)) rotate(var(--rot)) translateY(-6px) scale(1.03) !important;
+        box-shadow: 6px 12px 24px rgba(0,0,0,0.25);
+    }
+
+    .menu-btn {
+        background: white;
+        border: none;
+        padding: 10px;
+        box-shadow: 3px 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .menu-desplegable {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .menu-desplegable.cerrado {
+        display: none;
+    }
+
+    .nav-nota-movil {
+        font-family: 'Caveat', cursive;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-decoration: none;
+        padding: 8px 20px;
+        box-shadow: 3px 4px 12px rgba(0,0,0,0.15);
+        width: fit-content;
+    }
+
+    .nav-nota-movil:hover {
+        transform: rotate(0deg) !important;
+    }
+</style>

@@ -1,12 +1,46 @@
 ---
-import htmlIcon from '../assets/html-dibujo.png';
-import jsIcon from '../assets/js-dibujo.png';
-import tsIcon from '../assets/ts-dibujo.png';
+import htmlIcon from '../assets/htmldibujo.png';
+import cssIcon from '../assets/cssdibujo.png';
+import jsIcon from '../assets/jsdibujo.png';
+import tsIcon from '../assets/tsdibujo (2).png';
+import tailwindIcon from '../assets/tailwinddibujo.png';
+import reactIcon from '../assets/reactdibujo.png';
+import nextjsIcon from '../assets/nextjsdibujo.png';
+import nodejsIcon from '../assets/nodejsdibujo.png';
+import expressIcon from '../assets/expressdibujo.png';
+import phpIcon from '../assets/phpdibujo.png';
+import laravelIcon from '../assets/laraveldibujo.png';
+import wordpressIcon from '../assets/wordpressdibujo.png';
+import mongoIcon from '../assets/mongodibujo.png';
+import postgresqlIcon from '../assets/postgresqldibujo.png';
+import prismaIcon from '../assets/prismadibujo.png';
+import dockerIcon from '../assets/dockerdibujo.png';
+import gitIcon from '../assets/gitdibujo.png';
+import githubIcon from '../assets/githubdibujo.png';
 
 const tecnologias = [
+    // Frontend
     { nombre: 'HTML', icono: htmlIcon.src },
+    { nombre: 'CSS', icono: cssIcon.src },
     { nombre: 'JavaScript', icono: jsIcon.src },
     { nombre: 'TypeScript', icono: tsIcon.src },
+    { nombre: 'Tailwind', icono: tailwindIcon.src },
+    { nombre: 'React', icono: reactIcon.src },
+    { nombre: 'Next.js', icono: nextjsIcon.src },
+    // Backend
+    { nombre: 'Node.js', icono: nodejsIcon.src },
+    { nombre: 'Express', icono: expressIcon.src },
+    { nombre: 'PHP', icono: phpIcon.src },
+    { nombre: 'Laravel', icono: laravelIcon.src },
+    { nombre: 'WordPress', icono: wordpressIcon.src },
+    // Base de datos
+    { nombre: 'MongoDB', icono: mongoIcon.src },
+    { nombre: 'PostgreSQL', icono: postgresqlIcon.src },
+    { nombre: 'Prisma', icono: prismaIcon.src },
+    // DevOps & Herramientas
+    { nombre: 'Docker', icono: dockerIcon.src },
+    { nombre: 'Git', icono: gitIcon.src },
+    { nombre: 'GitHub', icono: githubIcon.src },
 ];
 ---
 
@@ -14,35 +48,57 @@ const tecnologias = [
     {tecnologias.map(tech => (
         <div class="tech-item">
             <img src={tech.icono} alt={tech.nombre} class="tech-icon" />
+            <span class="tech-nombre">{tech.nombre}</span>
         </div>
     ))}
 </div>
 
 <style>
     .grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2.5rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
         margin-top: 0;
-        justify-content: center;
+        justify-items: center;
     }
 
     .tech-item {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 0.3rem;
+    }
+
+    .tech-item:hover .tech-icon {
+        transform: rotate(-8deg) scale(1.1);
+    }
+
+    .tech-nombre {
+        font-family: 'Caveat', cursive;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .tech-item:hover .tech-nombre {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .tech-icon {
         width: 160px;
         height: 160px;
         object-fit: contain;
+        transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
     }
 
-    .tech-nombre {
-        font-family: 'Caveat', cursive;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #1a1a1a;
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 </style>
