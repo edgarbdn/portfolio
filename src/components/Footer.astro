@@ -6,9 +6,6 @@ const variantes = [
     { footer: '/assets/footer4.png', subrayador: '/assets/subrayador4.png' },
     { footer: '/assets/footer5.png', subrayador: '/assets/subrayador5.png' },
 ];
-
-const idx = Math.floor(Math.random() * variantes.length);
-const { footer, subrayador } = variantes[idx];
 ---
 
 <!-- Línea separadora a mano -->
@@ -22,8 +19,8 @@ const { footer, subrayador } = variantes[idx];
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-bg">
-        <div class="footer-contenido" style={`background-image: url('${footer}');`}>
-            <img src={subrayador} alt="subrayador" class="subrayador" />
+        <div class="footer-contenido" id="footer-contenido">
+            <img src="" alt="subrayador" class="subrayador" id="footer-subrayador" />
 
             <!-- Nombre y rol -->
             <div class="footer-nombre-wrapper">
@@ -45,6 +42,15 @@ const { footer, subrayador } = variantes[idx];
     </div>
     <img src="/assets/boligrafo1.png" alt="pnpm run dev" class="boligrafo1" />
 </footer>
+
+<script define:vars={{ variantes }}>
+    const idx = Math.floor(Math.random() * variantes.length);
+    const { footer, subrayador } = variantes[idx];
+    const contenido = document.getElementById('footer-contenido');
+    const img = document.getElementById('footer-subrayador');
+    if (contenido) contenido.style.backgroundImage = `url('${footer}')`;
+    if (img) img.src = subrayador;
+</script>
 
 <style>
     .boligrafo1 {
