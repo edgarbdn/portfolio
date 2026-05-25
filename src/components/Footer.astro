@@ -1,4 +1,14 @@
 ---
+const variantes = [
+    { footer: '/src/assets/footer.png', subrayador: '/src/assets/subrayador.png' },
+    { footer: '/src/assets/footer2.png', subrayador: '/src/assets/subrayador2.png' },
+    { footer: '/src/assets/footer3.png', subrayador: '/src/assets/subrayador3.png' },
+    { footer: '/src/assets/footer4.png', subrayador: '/src/assets/subrayador4.png' },
+    { footer: '/src/assets/footer5.png', subrayador: '/src/assets/subrayador5.png' },
+];
+
+const idx = Math.floor(Math.random() * variantes.length);
+const { footer, subrayador } = variantes[idx];
 ---
 
 <!-- Línea separadora a mano -->
@@ -12,8 +22,8 @@
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-bg">
-        <div class="footer-contenido">
-            <img src="/src/assets/subrayador.png" alt="subrayador" class="subrayador" />
+        <div class="footer-contenido" style={`background-image: url('${footer}');`}>
+            <img src={subrayador} alt="subrayador" class="subrayador" />
 
             <!-- Nombre y rol -->
             <div class="footer-nombre-wrapper">
@@ -24,7 +34,7 @@
             <!-- Links -->
             <div class="footer-links">
                 <a href="https://github.com/edgarbdn" target="_blank" class="footer-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/edgarbdn" target="_blank" class="footer-link">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="footer-link">LinkedIn</a>
                 <a href="mailto:tu@email.com" class="footer-link">Email</a>
             </div>
 
@@ -33,9 +43,28 @@
 
         </div>
     </div>
+    <img src="/src/assets/boligrafo1.png" alt="pnpm run dev" class="boligrafo1" />
 </footer>
 
 <style>
+    .boligrafo1 {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        width: 120px;
+        height: auto;
+        transform: rotate(-15deg);
+        opacity: 0.85;
+        pointer-events: none;
+        display: none;
+    }
+
+    @media (min-width: 1420px) {
+        .boligrafo1 {
+            display: block;
+        }
+    }
+
     .separador {
         width: 100%;
         max-width: 64rem;
@@ -66,7 +95,6 @@
     .footer-contenido {
         width: 100%;
         max-width: 64rem;
-        background-image: url('/src/assets/footer.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;

@@ -38,10 +38,16 @@
         position: absolute;
         top: 10px;
         left: 90%;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         transform: rotate(10deg);
+    }
+
+    @media (min-width: 768px) {
+        .annotation {
+            display: flex;
+        }
     }
 
     .label {

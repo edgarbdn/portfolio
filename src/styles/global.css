@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html, body {
+    overflow-x: hidden;
+}
+
 /* Animaciones de entrada - opcion B: slide up */
 .reveal {
     opacity: 0;
