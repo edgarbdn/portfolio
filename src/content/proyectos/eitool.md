@@ -1,7 +1,7 @@
 ---
 titulo: "Eitool"
 descripcion: "Plataforma de alquiler de herramientas entre particulares. Encuentra la herramienta que necesitas o gana dinero alquilando las tuyas."
-imagen: "/captura-ietool.png"
+imagen: "/assets/captura-ietool.png"
 tecnologias:
   [
     "Next.js 14",
