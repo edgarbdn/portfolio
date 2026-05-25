@@ -44,12 +44,17 @@ const variantes = [
 </footer>
 
 <script define:vars={{ variantes }}>
-    const idx = Math.floor(Math.random() * variantes.length);
-    const { footer, subrayador } = variantes[idx];
-    const contenido = document.getElementById('footer-contenido');
-    const img = document.getElementById('footer-subrayador');
-    if (contenido) contenido.style.backgroundImage = `url('${footer}')`;
-    if (img) img.src = subrayador;
+    function aplicarFooter() {
+        const idx = Math.floor(Math.random() * variantes.length);
+        const { footer, subrayador } = variantes[idx];
+        const contenido = document.getElementById('footer-contenido');
+        const img = document.getElementById('footer-subrayador');
+        if (contenido) contenido.style.backgroundImage = `url('${footer}')`;
+        if (img) img.src = subrayador;
+    }
+
+    aplicarFooter();
+    document.addEventListener('astro:page-load', aplicarFooter);
 </script>
 
 <style>
