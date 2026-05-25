@@ -15,8 +15,8 @@ const { Content } = await render(proyecto);
 ---
 
 <Layout>
-    <section class="w-full min-h-screen flex flex-col items-center px-6 pt-32 pb-20">
-        <div class="w-full max-w-5xl flex flex-col gap-10">
+    <section class="w-full min-h-screen flex flex-col items-center px-6 pt-32 pb-32">
+        <div class="w-full max-w-5xl flex flex-col gap-12">
 
             <!-- Volver -->
             <a href="/" class="btn-volver">
@@ -33,45 +33,56 @@ const { Content } = await render(proyecto);
                 </span>
             </a>
 
-            <!-- Titulo -->
-            <div class="titulo-wrapper">
-                <h1 class="titulo" transition:name={`titulo-${proyecto.id}`}>{proyecto.data.titulo}</h1>
-                <svg class="subrayado" viewBox="0 0 200 20" fill="none">
-                    <path d="M2 7 C50 4, 120 8, 175 5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <path d="M28 14 C70 18, 140 11, 198 16" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                </svg>
-            </div>
+            <!-- Contenido principal -->
+            <div class="contenido-principal">
 
-            <!-- Imagen -->
-            <img
-                src={proyecto.data.imagen}
-                alt={proyecto.data.titulo}
-                class="imagen-proyecto"
-                transition:name={`imagen-${proyecto.id}`}
-            />
+                <!-- Imagen polaroid -->
+                <div class="polaroid" transition:name={`imagen-${proyecto.id}`}>
+                    <img src={proyecto.data.imagen} alt={proyecto.data.titulo} class="polaroid-img" />
+                    <div class="polaroid-pie"></div>
+                </div>
 
-            <!-- Descripcion -->
-            <div class="descripcion">
-                <Content />
-            </div>
+                <!-- Info -->
+                <div class="info">
 
-            <!-- Tecnologias -->
-            <div class="techs">
-                {proyecto.data.tecnologias.map(tech => (
-                    <span class="tech-tag">{tech}</span>
-                ))}
-            </div>
+                    <!-- Titulo -->
+                    <div class="titulo-wrapper">
+                        <h1 class="titulo" transition:name={`titulo-${proyecto.id}`}>{proyecto.data.titulo}</h1>
+                        <svg class="subrayado" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none">
+                            <path d="M2 7 C50 4, 120 8, 175 5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <path d="M28 14 C70 18, 140 11, 198 16" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
 
-            <!-- Links -->
-            <div class="links">
-                <a href={proyecto.data.github} target="_blank" class="btn-github">
-                    Ver en GitHub
-                </a>
-                {proyecto.data.demo && (
-                    <a href={proyecto.data.demo} target="_blank" class="btn-demo">
-                        Ver demo
-                    </a>
-                )}
+                    <!-- Descripcion -->
+                    <div class="descripcion-wrapper">
+                        <div class="cinta"></div>
+                        <div class="descripcion">
+                            <Content />
+                        </div>
+                    </div>
+
+                    <!-- Tecnologias -->
+                    <div class="techs">
+                        {proyecto.data.tecnologias.map(tech => (
+                            <span class="tech-tag">{tech}</span>
+                        ))}
+                    </div>
+
+                    <!-- Links -->
+                    <div class="links">
+                        <a href={proyecto.data.github} target="_blank" class="btn-gh">
+                            <span>Ver en GitHub - </span>
+                            <img src="/src/assets/githubdibujo.png" alt="GitHub" class="github-icon" />
+                        </a>
+                        {proyecto.data.demo && (
+                            <a href={proyecto.data.demo} target="_blank" class="btn-demo">
+                                Ver demo
+                            </a>
+                        )}
+                    </div>
+
+                </div>
             </div>
 
         </div>
@@ -79,6 +90,7 @@ const { Content } = await render(proyecto);
 </Layout>
 
 <style>
+    /* Volver */
     .btn-volver {
         display: inline-flex;
         align-items: center;
@@ -115,17 +127,63 @@ const { Content } = await render(proyecto);
         height: calc(100% + 44px);
     }
 
+    /* Layout principal */
+    .contenido-principal {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+        .contenido-principal {
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+        }
+    }
+
+    /* Polaroid */
+    .polaroid {
+        background: white;
+        padding: 12px 12px 48px 12px;
+        box-shadow: 4px 6px 20px rgba(0,0,0,0.15);
+        transform: rotate(-2deg);
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .polaroid-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .polaroid-pie {
+        height: 36px;
+    }
+
+    /* Info */
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        flex: 1;
+    }
+
+    /* Titulo */
     .titulo-wrapper {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: fit-content;
-        transform: rotate(-3deg);
+        transform: rotate(-2deg);
     }
 
     .titulo {
         font-family: 'Caveat', cursive;
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0;
@@ -138,20 +196,35 @@ const { Content } = await render(proyecto);
         margin-top: -4px;
     }
 
-    .imagen-proyecto {
-        width: 100%;
-        border-radius: 1.5rem;
-        object-fit: cover;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    /* Descripcion */
+    .descripcion-wrapper {
+        position: relative;
+        background: #8BFB8B;
+        padding: 2rem;
+        transform: rotate(-1deg);
+        box-shadow: 4px 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .cinta {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-1deg);
+        width: 70px;
+        height: 26px;
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 1px 2px 6px rgba(0,0,0,0.1);
     }
 
     .descripcion {
-        font-family: sans-serif;
+        font-family: system-ui, sans-serif;
         font-size: 1rem;
-        color: #444;
-        line-height: 1.7;
+        color: #1a1a1a;
+        line-height: 1.8;
     }
 
+    /* Techs */
     .techs {
         display: flex;
         flex-wrap: wrap;
@@ -160,48 +233,46 @@ const { Content } = await render(proyecto);
 
     .tech-tag {
         font-family: 'Fira Code', monospace;
-        font-size: 0.8rem;
-        background: #1a1a1a;
-        color: #f7f7f7;
-        padding: 6px 14px;
-        border-radius: 999px;
+        font-size: 0.75rem;
+        background: #fdfd31;
+        color: #1a1a1a;
+        padding: 4px 12px;
+        transform: rotate(-1deg);
+        display: inline-block;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
     }
 
+    .tech-tag:nth-child(even) {
+        transform: rotate(1deg);
+    }
+
+    /* Botones */
     .links {
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
         flex-wrap: wrap;
+        align-items: center;
     }
 
-    .btn-github {
+    .btn-gh {
         font-family: 'Caveat', cursive;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        background: #1a1a1a;
-        color: #f7f7f7;
-        padding: 10px 24px;
-        border-radius: 999px;
-        text-decoration: none;
-        transition: opacity 0.2s;
-    }
-
-    .btn-github:hover { opacity: 0.8; }
-
-    .btn-demo {
-        font-family: 'Caveat', cursive;
-        font-size: 1.3rem;
-        font-weight: 700;
-        background: transparent;
         color: #1a1a1a;
-        padding: 10px 24px;
-        border-radius: 999px;
-        border: 2px solid #1a1a1a;
         text-decoration: none;
-        transition: background 0.2s, color 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s ease;
     }
 
-    .btn-demo:hover {
-        background: #1a1a1a;
-        color: #f7f7f7;
+    .btn-gh:hover {
+        transform: rotate(-2deg) scale(1.05);
+    }
+
+    .github-icon {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
     }
 </style>

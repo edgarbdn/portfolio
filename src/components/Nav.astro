@@ -2,10 +2,10 @@
 import { Menu } from 'lucide-astro';
 
 const links = [
-    { href: '#sobremi', label: 'Sobre mí', rotate: '-3deg', translateY: '3px' },
-    { href: '#tecnologias', label: 'Mi stack', rotate: '2deg', translateY: '-5px' },
-    { href: '#proyectos', label: 'Mis proyectos', rotate: '-2deg', translateY: '7px' },
-    { href: '#experiencia', label: 'Experiencia', rotate: '3deg', translateY: '-3px' },
+    { href: '/#sobremi', label: 'Sobre mí', rotate: '-3deg', translateY: '3px' },
+    { href: '/#tecnologias', label: 'Mi stack', rotate: '2deg', translateY: '-5px' },
+    { href: '/#proyectos', label: 'Mis proyectos', rotate: '-2deg', translateY: '7px' },
+    { href: '/#experiencia', label: 'Experiencia', rotate: '3deg', translateY: '-3px' },
 ];
 
 const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
@@ -29,6 +29,9 @@ const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
         <a href="https://github.com/edgarbdn" target="_blank" class="nav-nota nav-github" style="transform: rotate(1deg); background: #f3e8ff;">
             Mi Github
         </a>
+        <a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="nav-nota nav-linkedin" style="transform: rotate(-2deg); background: #bfdbfe;">
+            LinkedIn
+        </a>
     </nav>
 
     <!-- Móvil -->
@@ -48,10 +51,13 @@ const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
                 </a>
             ))}
             <a href="/cv.pdf" download class="nav-nota-movil" style="transform: rotate(-1.5deg); background: #dbeafe;">
-                📄 Descargar CV
+                Mi CV
             </a>
             <a href="https://github.com/edgarbdn" target="_blank" class="nav-nota-movil" style="transform: rotate(1deg); background: #f3e8ff;">
-                🐙 Mi Github
+                Mi Github
+            </a>
+            <a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="nav-nota-movil" style="transform: rotate(-2deg); background: #bfdbfe;">
+                LinkedIn
             </a>
         </div>
     </div>
@@ -104,9 +110,10 @@ const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1420px) {
         .nav-cv,
-        .nav-github {
+        .nav-github,
+        .nav-linkedin {
             display: none;
         }
     }
@@ -131,6 +138,7 @@ const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
     .nav-nota:nth-child(4) { animation-delay: 0.4s; }
     .nav-nota:nth-child(5) { animation-delay: 0.5s; }
     .nav-nota:nth-child(6) { animation-delay: 0.6s; }
+    .nav-nota:nth-child(7) { animation-delay: 0.7s; }
 
     @keyframes caerPapel {
         0% {
@@ -147,7 +155,7 @@ const colores = ['#8BFB8B', '#60a5fa', '#fdfd31', '#fca5a5'];
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1420px) {
         .nav-nota {
             font-size: 1.6rem;
             padding: 12px 24px;

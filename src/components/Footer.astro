@@ -1,0 +1,157 @@
+---
+---
+
+<!-- Línea separadora a mano -->
+<div class="separador">
+    <svg viewBox="0 0 1024 30" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 18 C80 8, 200 24, 350 14 C500 4, 600 22, 750 16 C900 10, 980 20, 1024 15" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M0 24 C100 14, 250 28, 400 20 C600 12, 800 26, 950 18 C1000 12, 1015 22, 1024 20" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+    </svg>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-bg">
+        <div class="footer-contenido">
+            <img src="/src/assets/subrayador.png" alt="subrayador" class="subrayador" />
+
+            <!-- Nombre y rol -->
+            <div class="footer-nombre-wrapper">
+                <span class="footer-nombre">Edgar Moreno</span>
+                <span class="footer-rol">Full Stack Developer</span>
+            </div>
+
+            <!-- Links -->
+            <div class="footer-links">
+                <a href="https://github.com/edgarbdn" target="_blank" class="footer-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/edgarbdn" target="_blank" class="footer-link">LinkedIn</a>
+                <a href="mailto:tu@email.com" class="footer-link">Email</a>
+            </div>
+
+            <!-- Copyright -->
+            <span class="footer-copy">© 2026 — Diseñado y desarrollado por mí</span>
+
+        </div>
+    </div>
+</footer>
+
+<style>
+    .separador {
+        width: 100%;
+        max-width: 64rem;
+        margin: 0 auto;
+        height: 30px;
+        margin-bottom: -4px;
+        padding: 0 1.5rem;
+    }
+
+    .separador svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .footer {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .footer-bg {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 60px 1.5rem;
+    }
+
+    .footer-contenido {
+        width: 100%;
+        max-width: 64rem;
+        background-image: url('/src/assets/footer.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 60px 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        border-radius: 1rem;
+        position: relative;
+        overflow: visible;
+    }
+
+    .subrayador {
+        position: absolute;
+        bottom: -200px;
+        left: -240px;
+        width: 520px;
+        height: auto;
+        transform: rotate(120deg);
+        pointer-events: none;
+    }
+
+    .footer-nombre-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: rotate(-2deg);
+    }
+
+    .footer-nombre {
+        font-family: 'Caveat', cursive;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1;
+    }
+
+    .footer-rol {
+        font-family: 'Fira Code', monospace;
+        font-size: 1rem;
+        color: #1a1a1a;
+        margin-top: 4px;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-link {
+        font-family: 'Caveat', cursive;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-decoration: none;
+        position: relative;
+        transition: transform 0.2s ease;
+    }
+
+    .footer-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #1a1a1a;
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+    }
+
+    .footer-link:hover {
+        transform: rotate(-2deg);
+    }
+
+    .footer-link:hover::after {
+        transform: scaleX(1);
+    }
+
+    .footer-copy {
+        font-family: 'Fira Code', monospace;
+        font-size: 1rem;
+        color: #000000;
+    }
+</style>

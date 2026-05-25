@@ -1,5 +1,6 @@
 ---
 import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 ---
@@ -19,8 +20,9 @@ import { ClientRouter } from 'astro:transitions';
 	<body>
 		<Nav></Nav>
 		<slot />
+		<Footer />
 
-		<a href="https://www.linkedin.com/in/edgarbdn" target="_blank" class="btn-linkedin">
+		<a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="btn-linkedin">
 			<img src="/src/assets/linkedin.png" alt="LinkedIn" />
 		</a>
 
@@ -62,6 +64,18 @@ import { ClientRouter } from 'astro:transitions';
 			document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 			document.addEventListener('astro:page-load', () => {
+				window.scrollTo(0, 0);
+
+				// Scroll a la seccion si hay hash en la URL
+				if (window.location.hash) {
+					const el = document.querySelector(window.location.hash);
+					if (el) {
+						setTimeout(() => {
+							el.scrollIntoView({ behavior: 'smooth' });
+						}, 100);
+					}
+				}
+
 				document.querySelectorAll('.reveal').forEach(el => {
 					if (!el.classList.contains('visible')) {
 						observer.observe(el);
@@ -95,7 +109,7 @@ import { ClientRouter } from 'astro:transitions';
 		object-fit: contain;
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 1420px) {
 		.btn-linkedin {
 			display: block;
 		}
@@ -112,7 +126,7 @@ import { ClientRouter } from 'astro:transitions';
 		gap: 0;
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 1420px) {
 		.cv-wrapper {
 			display: flex;
 		}
@@ -178,7 +192,7 @@ import { ClientRouter } from 'astro:transitions';
 		gap: 0;
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 1420px) {
 		.github-wrapper {
 			display: flex;
 		}
