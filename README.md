@@ -1,18 +1,18 @@
 # Portfolio — Edgar
 
-Portfolio personal desarrollado con Astro 6, Tailwind CSS v4 y View Transitions. Diseño oscuro con estética de cuadrícula y tipografía Caveat para dar un toque artesanal.
+Portfolio personal desarrollado con Astro 6, Tailwind CSS v4 y View Transitions. Diseño claro con estética de cuadrícula, "dibujado a mano" y tipografía Caveat para dar un una sensación de escritura a mano
 
 ---
 
 ## 🛠️ Stack
 
-| Tecnología | Versión | Uso |
-| :--- | :--- | :--- |
-| [Astro](https://astro.build) | ^6.3.7 | Framework principal |
-| [Tailwind CSS](https://tailwindcss.com) | ^4.3.0 | Estilos (vía plugin Vite) |
-| [Lucide Astro](https://lucide.dev) | ^0.556.0 | Iconos |
-| Node.js | >=22.12.0 | Entorno de ejecución |
-| pnpm | — | Gestor de paquetes |
+| Tecnología                              | Versión   | Uso                       |
+| :-------------------------------------- | :-------- | :------------------------ |
+| [Astro](https://astro.build)            | ^6.3.7    | Framework principal       |
+| [Tailwind CSS](https://tailwindcss.com) | ^4.3.0    | Estilos (vía plugin Vite) |
+| [Lucide Astro](https://lucide.dev)      | ^0.556.0  | Iconos                    |
+| Node.js                                 | >=22.12.0 | Entorno de ejecución      |
+| pnpm                                    | —         | Gestor de paquetes        |
 
 ---
 
@@ -44,12 +44,12 @@ Portfolio personal desarrollado con Astro 6, Tailwind CSS v4 y View Transitions.
 
 Ejecutar desde la raíz del proyecto:
 
-| Comando | Acción |
-| :--- | :--- |
-| `pnpm install` | Instala las dependencias |
-| `pnpm dev` | Servidor de desarrollo en `localhost:4321` |
-| `pnpm build` | Build de producción en `./dist/` |
-| `pnpm preview` | Preview del build antes de desplegar |
+| Comando        | Acción                                     |
+| :------------- | :----------------------------------------- |
+| `pnpm install` | Instala las dependencias                   |
+| `pnpm dev`     | Servidor de desarrollo en `localhost:4321` |
+| `pnpm build`   | Build de producción en `./dist/`           |
+| `pnpm preview` | Preview del build antes de desplegar       |
 
 ---
 
@@ -66,7 +66,7 @@ tecnologias:
   - Next.js
   - TypeScript
 github: https://github.com/tu-usuario/repo
-demo: https://tu-demo.com  # Opcional
+demo: https://tu-demo.com # Opcional
 ---
 
 Contenido largo del proyecto en Markdown...
