@@ -13,6 +13,7 @@ tecnologias:
     "Stripe",
     "Vercel",
   ]
+orden: 1
 github: "https://github.com/edgarbdn/Proyecto-final-DAW--Alquila-tu-herramienta"
 ---
 

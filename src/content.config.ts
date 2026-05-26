@@ -8,6 +8,7 @@ const proyectos = defineCollection({
         descripcion: z.string(),
         imagen: z.string(),
         tecnologias: z.array(z.string()),
+        orden: z.number(),
         github: z.string().url(),
         demo: z.string().url().optional(),
     })

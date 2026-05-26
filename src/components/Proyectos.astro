@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-const proyectos = await getCollection('proyectos');
+const proyectos = (await getCollection('proyectos')).sort((a, b) => a.data.orden - b.data.orden);
 
 const rotaciones = ['-3deg', '2deg', '-1.5deg'];
 const rotacionesFoto = ['1deg', '-2deg', '1.5deg'];
@@ -17,6 +17,7 @@ const colores = ['#fef9c3', '#fce7f3', '#dbeafe'];
                     <path d="M2 8 C50 5, 120 11, 198 8" stroke="#ffff00" stroke-width="14" stroke-linecap="round" fill="none"/>
                 </svg>
             </span>
+            <span class="titulo">+ destacados</span>
         </div>
 
         <div class="reveal grid-proyectos">
