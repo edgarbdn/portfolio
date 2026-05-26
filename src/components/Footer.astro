@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import boligrafo1 from '../assets/boligrafo1.png';
+
 const variantes = [
     { footer: '/assets/footer.png', subrayador: '/assets/subrayador.png' },
     { footer: '/assets/footer2.png', subrayador: '/assets/subrayador2.png' },
@@ -40,7 +43,7 @@ const variantes = [
 
         </div>
     </div>
-    <img src="/assets/boligrafo1.png" alt="pnpm run dev" class="boligrafo1" />
+    <Image src={boligrafo1} alt="pnpm run dev" class="boligrafo1" />
 </footer>
 
 <script define:vars={{ variantes }}>

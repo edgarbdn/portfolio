@@ -10,6 +10,7 @@ const proyectos = defineCollection({
         tecnologias: z.array(z.string()),
         orden: z.number(),
         github: z.string().url(),
+        github_backend: z.string().url().optional(),
         demo: z.string().url().optional(),
     })
 });

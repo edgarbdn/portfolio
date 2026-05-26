@@ -1,6 +1,18 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+
+import campervan from '../../assets/campervan.png';
+import eitool from '../../assets/captura-ietool.png';
+import vinoteca from '../../assets/vinoteca.png';
+import githubdibujo from '../../assets/githubdibujo.png';
+
+const imagenes: Record<string, ImageMetadata> = {
+    'campervan': campervan,
+    'eitool': eitool,
+    'vinoteca': vinoteca,
+};
 
 export async function getStaticPaths() {
     const proyectos = await getCollection('proyectos');
@@ -38,7 +50,7 @@ const { Content } = await render(proyecto);
 
                 <!-- Imagen polaroid -->
                 <div class="polaroid" transition:name={`imagen-${proyecto.id}`}>
-                    <img src={proyecto.data.imagen} alt={proyecto.data.titulo} class="polaroid-img" />
+                    <Image src={imagenes[proyecto.id]} alt={proyecto.data.titulo} class="polaroid-img" />
                     <div class="polaroid-pie"></div>
                 </div>
 
@@ -73,8 +85,14 @@ const { Content } = await render(proyecto);
                     <div class="links">
                         <a href={proyecto.data.github} target="_blank" class="btn-gh">
                             <span>Ver en GitHub - </span>
-                            <img src="/assets/githubdibujo.png" alt="GitHub" class="github-icon" />
+                            <Image src={githubdibujo} alt="GitHub" class="github-icon" />
                         </a>
+                        {proyecto.data.github_backend && (
+                            <a href={proyecto.data.github_backend} target="_blank" class="btn-gh">
+                                <span>Backend - </span>
+                                <Image src={githubdibujo} alt="GitHub" class="github-icon" />
+                            </a>
+                        )}
                         {proyecto.data.demo && (
                             <a href={proyecto.data.demo} target="_blank" class="btn-demo">
                                 Ver demo

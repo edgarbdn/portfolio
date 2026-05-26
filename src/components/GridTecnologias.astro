@@ -1,34 +1,51 @@
 ---
+import { Image } from 'astro:assets';
+
+import htmldibujo from '../assets/htmldibujo.png';
+import cssdibujo from '../assets/cssdibujo.png';
+import jsdibujo from '../assets/jsdibujo.png';
+import tsdibujo from '../assets/tsdibujo (2).png';
+import tailwinddibujo from '../assets/tailwinddibujo.png';
+import reactdibujo from '../assets/reactdibujo.png';
+import nextjsdibujo from '../assets/nextjsdibujo.png';
+import nodejsdibujo from '../assets/nodejsdibujo.png';
+import expressdibujo from '../assets/expressdibujo.png';
+import phpdibujo from '../assets/phpdibujo.png';
+import laraveldibujo from '../assets/laraveldibujo.png';
+import wordpressdibujo from '../assets/wordpressdibujo.png';
+import mongodibujo from '../assets/mongodibujo.png';
+import postgresqldibujo from '../assets/postgresqldibujo.png';
+import prismadibujo from '../assets/prismadibujo.png';
+import dockerdibujo from '../assets/dockerdibujo.png';
+import gitdibujo from '../assets/gitdibujo.png';
+import githubdibujo from '../assets/githubdibujo.png';
+
 const tecnologias = [
-    // Frontend
-    { nombre: 'HTML', icono: '/assets/htmldibujo.png' },
-    { nombre: 'CSS', icono: '/assets/cssdibujo.png' },
-    { nombre: 'JavaScript', icono: '/assets/jsdibujo.png' },
-    { nombre: 'TypeScript', icono: '/assets/tsdibujo (2).png' },
-    { nombre: 'Tailwind', icono: '/assets/tailwinddibujo.png' },
-    { nombre: 'React', icono: '/assets/reactdibujo.png' },
-    { nombre: 'Next.js', icono: '/assets/nextjsdibujo.png' },
-    // Backend
-    { nombre: 'Node.js', icono: '/assets/nodejsdibujo.png' },
-    { nombre: 'Express', icono: '/assets/expressdibujo.png' },
-    { nombre: 'PHP', icono: '/assets/phpdibujo.png' },
-    { nombre: 'Laravel', icono: '/assets/laraveldibujo.png' },
-    { nombre: 'WordPress', icono: '/assets/wordpressdibujo.png' },
-    // Base de datos
-    { nombre: 'MongoDB', icono: '/assets/mongodibujo.png' },
-    { nombre: 'PostgreSQL', icono: '/assets/postgresqldibujo.png' },
-    { nombre: 'Prisma', icono: '/assets/prismadibujo.png' },
-    // DevOps & Herramientas
-    { nombre: 'Docker', icono: '/assets/dockerdibujo.png' },
-    { nombre: 'Git', icono: '/assets/gitdibujo.png' },
-    { nombre: 'GitHub', icono: '/assets/githubdibujo.png' },
+    { nombre: 'HTML', icono: htmldibujo },
+    { nombre: 'CSS', icono: cssdibujo },
+    { nombre: 'JavaScript', icono: jsdibujo },
+    { nombre: 'TypeScript', icono: tsdibujo },
+    { nombre: 'Tailwind', icono: tailwinddibujo },
+    { nombre: 'React', icono: reactdibujo },
+    { nombre: 'Next.js', icono: nextjsdibujo },
+    { nombre: 'Node.js', icono: nodejsdibujo },
+    { nombre: 'Express', icono: expressdibujo },
+    { nombre: 'PHP', icono: phpdibujo },
+    { nombre: 'Laravel', icono: laraveldibujo },
+    { nombre: 'WordPress', icono: wordpressdibujo },
+    { nombre: 'MongoDB', icono: mongodibujo },
+    { nombre: 'PostgreSQL', icono: postgresqldibujo },
+    { nombre: 'Prisma', icono: prismadibujo },
+    { nombre: 'Docker', icono: dockerdibujo },
+    { nombre: 'Git', icono: gitdibujo },
+    { nombre: 'GitHub', icono: githubdibujo },
 ];
 ---
 
 <div class="grid">
     {tecnologias.map(tech => (
         <div class="tech-item">
-            <img src={tech.icono} alt={tech.nombre} class="tech-icon" />
+            <Image src={tech.icono} alt={tech.nombre} class="tech-icon" />
             <span class="tech-nombre">{tech.nombre}</span>
         </div>
     ))}

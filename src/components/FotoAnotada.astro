@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import edgar from '../assets/edgar.png';
 ---
 
 <div class="wrapper">
@@ -11,8 +13,8 @@
         </svg>
     </div>
 
-    <img
-        src="/assets/edgar.png"
+    <Image
+        src={edgar}
         alt="Edgar y su perro"
         class="foto"
     />

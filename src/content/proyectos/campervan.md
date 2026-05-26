@@ -1,7 +1,7 @@
 ---
 titulo: "CamperVan Co."
 descripcion: "Landing corporativa de alquiler de furgonetas camper con catálogo, sistema de comentarios y panel de administración con roles."
-imagen: "/campervan.png"
+imagen: "/src/assets/campervan.png"
 tecnologias:
   [
     "Next.js 16",

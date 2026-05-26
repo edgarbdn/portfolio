@@ -3,6 +3,10 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
+import { Image } from 'astro:assets';
+import linkedin from '../assets/linkedin.png';
+import cv from '../assets/cv.png';
+import github from '../assets/github.png';
 ---
 
 <!doctype html>
@@ -23,7 +27,7 @@ import { ClientRouter } from 'astro:transitions';
 		<Footer />
 
 		<a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="btn-linkedin">
-			<img src="/assets/linkedin.png" alt="LinkedIn" />
+			<Image src={linkedin} alt="LinkedIn" />
 		</a>
 
 		<div class="cv-wrapper">
@@ -35,13 +39,13 @@ import { ClientRouter } from 'astro:transitions';
 				</svg>
 			</div>
 			<a href="/CV-Edgar-Moreno.pdf" download class="btn-cv">
-				<img src="/assets/cv.png" alt="Descargar CV - Edgar Moreno" />
+				<Image src={cv} alt="Descargar CV - Edgar Moreno" />
 			</a>
 		</div>
 
 		<div class="github-wrapper">
 			<a href="https://github.com/edgarbdn" target="_blank" class="btn-github">
-				<img src="/assets/github.png" alt="Mi Github" />
+				<Image src={github} alt="Mi Github" />
 			</a>
 			<div class="github-anotacion">
 				<svg class="github-flecha" viewBox="0 0 50 60" fill="none" xmlns="http://www.w3.org/2000/svg">
