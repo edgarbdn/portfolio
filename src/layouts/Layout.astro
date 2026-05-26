@@ -18,12 +18,15 @@ import github from '../assets/github.png';
 		<link rel="icon" href="/favicon.ico" />
 		<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Portfolio de Edgar Moreno, Full Stack Developer. Proyectos reales con React, Next.js, Astro, Node.js, Express, PostgreSQL y más." />
 		<ClientRouter />
 		<title>Edgar Moreno - Portfolio</title>
 	</head>
 	<body>
 		<Nav></Nav>
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 
 		<a href="https://www.linkedin.com/in/edgar-moreno-comas-032222352/" target="_blank" class="btn-linkedin">
