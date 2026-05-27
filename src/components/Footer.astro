@@ -23,7 +23,7 @@ const variantes = [
 <footer class="footer">
     <div class="footer-bg">
         <div class="footer-contenido" id="footer-contenido">
-            <img src="" alt="subrayador" class="subrayador" id="footer-subrayador" />
+            <img src="" alt="subrayador" class="subrayador" id="footer-subrayador" style="display:none" />
 
             <!-- Nombre y rol -->
             <div class="footer-nombre-wrapper">
@@ -53,7 +53,10 @@ const variantes = [
         const contenido = document.getElementById('footer-contenido');
         const img = document.getElementById('footer-subrayador');
         if (contenido) contenido.style.backgroundImage = `url('${footer}')`;
-        if (img) img.src = subrayador;
+        if (img) {
+            img.src = subrayador;
+            img.style.display = 'block';
+        }
     }
 
     aplicarFooter();
@@ -130,6 +133,15 @@ const variantes = [
         height: auto;
         transform: rotate(120deg);
         pointer-events: none;
+        display: block;
+    }
+
+    @media (max-width: 767px) {
+        .subrayador {
+            width: 280px;
+            bottom: -100px;
+            left: -120px;
+        }
     }
 
     .footer-nombre-wrapper {
@@ -195,5 +207,24 @@ const variantes = [
         font-family: 'Fira Code', monospace;
         font-size: 1rem;
         color: #000000;
+    }
+
+    @media (max-width: 767px) {
+        .footer-nombre {
+            font-size: 2.2rem;
+        }
+
+        .footer-rol {
+            font-size: 0.8rem;
+        }
+
+        .footer-link {
+            font-size: 1.2rem;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            text-align: center;
+        }
     }
 </style>
