@@ -19,44 +19,108 @@ import prismadibujo from '../assets/prismadibujo.png';
 import dockerdibujo from '../assets/dockerdibujo.png';
 import gitdibujo from '../assets/gitdibujo.png';
 import githubdibujo from '../assets/githubdibujo.png';
+import claudedibujo from '../assets/claudedibujo.png';
+import playwrightdibujo from '../assets/playwrightdibujo.png';
+import chatgptdibujo from '../assets/chatgptdibujo.png';
+import astrodibujo from '../assets/astrodibujo.png';
+import supabasedibujo from '../assets/supabasedibujo.png';
+import stripedibujo from '../assets/stripedibujo.png';
 
 const tecnologias = [
-    { nombre: 'HTML', icono: htmldibujo },
-    { nombre: 'CSS', icono: cssdibujo },
-    { nombre: 'JavaScript', icono: jsdibujo },
-    { nombre: 'TypeScript', icono: tsdibujo },
-    { nombre: 'Tailwind', icono: tailwinddibujo },
-    { nombre: 'React', icono: reactdibujo },
-    { nombre: 'Next.js', icono: nextjsdibujo },
-    { nombre: 'Node.js', icono: nodejsdibujo },
-    { nombre: 'Express', icono: expressdibujo },
-    { nombre: 'PHP', icono: phpdibujo },
-    { nombre: 'Laravel', icono: laraveldibujo },
-    { nombre: 'WordPress', icono: wordpressdibujo },
-    { nombre: 'MongoDB', icono: mongodibujo },
-    { nombre: 'PostgreSQL', icono: postgresqldibujo },
-    { nombre: 'Prisma', icono: prismadibujo },
-    { nombre: 'Docker', icono: dockerdibujo },
-    { nombre: 'Git', icono: gitdibujo },
-    { nombre: 'GitHub', icono: githubdibujo },
+    { nombre: 'HTML', icono: htmldibujo, categoria: 'Frontend' },
+    { nombre: 'CSS', icono: cssdibujo, categoria: 'Frontend' },
+    { nombre: 'Tailwind', icono: tailwinddibujo, categoria: 'Frontend' },
+    { nombre: 'JavaScript', icono: jsdibujo, categoria: 'Frontend' },
+    { nombre: 'TypeScript', icono: tsdibujo, categoria: 'Frontend' },
+    { nombre: 'React', icono: reactdibujo, categoria: 'Frontend' },
+    { nombre: 'Next.js', icono: nextjsdibujo, categoria: 'Frontend' },
+    { nombre: 'Astro', icono: astrodibujo, categoria: 'Frontend' },
+    { nombre: 'Node.js', icono: nodejsdibujo, categoria: 'Backend' },
+    { nombre: 'Express', icono: expressdibujo, categoria: 'Backend' },
+    { nombre: 'Prisma', icono: prismadibujo, categoria: 'Backend' },
+    { nombre: 'PHP', icono: phpdibujo, categoria: 'Backend' },
+    { nombre: 'Laravel', icono: laraveldibujo, categoria: 'Backend' },
+    { nombre: 'WordPress', icono: wordpressdibujo, categoria: 'Backend' },
+    { nombre: 'Supabase', icono: supabasedibujo, categoria: 'Backend' },
+    { nombre: 'Stripe', icono: stripedibujo,categoria: 'Backend' },
+    { nombre: 'MongoDB', icono: mongodibujo, categoria: 'Bases de datos' },
+    { nombre: 'PostgreSQL', icono: postgresqldibujo, categoria: 'Bases de datos' },
+    { nombre: 'Docker', icono: dockerdibujo, categoria: 'Herramientas' },
+    { nombre: 'Git', icono: gitdibujo, categoria: 'Herramientas' },
+    { nombre: 'GitHub', icono: githubdibujo, categoria: 'Herramientas' },
+    { nombre: 'Claude Code', icono: claudedibujo, categoria: 'IA & Testing' },
+    { nombre: 'ChatGPT/Codex', icono: chatgptdibujo, categoria: 'IA & Testing' },
+    { nombre: 'PlayWright', icono: playwrightdibujo, categoria: 'IA & Testing' },
 ];
+
+const categorias = ['Frontend', 'Backend', 'Bases de datos', 'Herramientas', 'IA & Testing'];
+
+const coloresSubrayado = [
+    'rgba(139, 251, 139, 0.6)',
+    'rgba(96, 165, 250, 0.6)',
+    'rgba(230, 210, 20, 0.6)',
+    'rgba(252, 165, 165, 0.6)',
+    'rgba(196, 181, 253, 0.6)',
+];
+
+const grupos = categorias.map((categoria, i) => ({
+    categoria,
+    colorSubrayado: coloresSubrayado[i % coloresSubrayado.length],
+    items: tecnologias.filter(tech => tech.categoria === categoria),
+}));
 ---
 
-<div class="grid">
-    {tecnologias.map(tech => (
-        <div class="tech-item">
-            <Image src={tech.icono} alt={tech.nombre} class="tech-icon" />
-            <span class="tech-nombre">{tech.nombre}</span>
+<div class="stack-categorias">
+    {grupos.map(grupo => (
+        <div class="categoria">
+            <h3 class="categoria-titulo" style={`--color-subrayado: ${grupo.colorSubrayado};`}>{grupo.categoria}</h3>
+            <div class="grid">
+                {grupo.items.map(tech => (
+                    <div class="tech-item">
+                        <Image src={tech.icono} alt={tech.nombre} class="tech-icon" />
+                        <span class="tech-nombre">{tech.nombre}</span>
+                    </div>
+                ))}
+            </div>
         </div>
     ))}
 </div>
 
 <style>
+    .stack-categorias {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .categoria-titulo {
+        position: relative;
+        display: inline-block;
+        font-family: 'Caveat', cursive;
+        font-size: 1.7rem;
+        font-weight: 900;
+        color: #1a1a1a;
+        padding: 0 0.2rem;
+        margin: 0 0 1.25rem 0.5rem;
+    }
+
+    .categoria-titulo::after {
+        content: '';
+        position: absolute;
+        left: -0.15rem;
+        right: -0.15rem;
+        bottom: 0.05rem;
+        height: 0.5em;
+        background: var(--color-subrayado);
+        transform: rotate(-1deg);
+        z-index: -1;
+        border-radius: 2px;
+    }
+
     .grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-        margin-top: 0;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.25rem;
         justify-items: center;
     }
 
@@ -73,23 +137,23 @@ const tecnologias = [
 
     .tech-nombre {
         font-family: 'Caveat', cursive;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: #1a1a1a;
         opacity: 0;
-        transform: translateY(4px);
+        transform: translateY(4px) scale(1);
         transition: opacity 0.2s ease, transform 0.2s ease;
         white-space: nowrap;
     }
 
     .tech-item:hover .tech-nombre {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1.6);
     }
 
     .tech-icon {
-        width: 160px;
-        height: 160px;
+        width: 135px;
+        height: 135px;
         object-fit: contain;
         transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
     }
